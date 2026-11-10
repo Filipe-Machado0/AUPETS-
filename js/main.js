@@ -4,7 +4,69 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-  // 1. FAQ Accordion
+  // ==========================================================================
+  // 1. Mobile Drawer Navigation
+  // ==========================================================================
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+  const mobileDrawerClose = document.getElementById('mobileDrawerClose');
+  const mobileDrawerBackdrop = document.getElementById('mobileDrawerBackdrop');
+
+  function openDrawer() {
+    if (!mobileDrawer) return;
+    mobileDrawer.classList.add('is-open');
+    mobileMenuBtn?.classList.add('is-active');
+    mobileMenuBtn?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    if (!mobileDrawer) return;
+    mobileDrawer.classList.remove('is-open');
+    mobileMenuBtn?.classList.remove('is-active');
+    mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  if (mobileMenuBtn && mobileDrawer) {
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = mobileDrawer.classList.contains('is-open');
+      if (isOpen) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
+    });
+
+    mobileDrawerClose?.addEventListener('click', closeDrawer);
+    mobileDrawerBackdrop?.addEventListener('click', closeDrawer);
+
+    // Fecha ao clicar em qualquer link do drawer
+    mobileDrawer.querySelectorAll('.mobile-drawer__link').forEach(link => {
+      link.addEventListener('click', () => {
+        closeDrawer();
+      });
+    });
+
+    // Fecha ao clicar nos botões de agendamento dentro do drawer
+    mobileDrawer.querySelectorAll('[data-open-booking]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        closeDrawer();
+      });
+    });
+
+    // Fecha com a tecla Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileDrawer.classList.contains('is-open')) {
+        closeDrawer();
+      }
+    });
+  }
+
+  // ==========================================================================
+  // 2. FAQ Accordion
+  // ==========================================================================
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
     const questionBtn = item.querySelector('.faq-question');
@@ -25,7 +87,9 @@ document.addEventListener('DOMContentLoaded', function () {
     faqItems[0].classList.add('is-open');
   }
 
-  // 2. Smooth Scroll para links internos
+  // ==========================================================================
+  // 3. Smooth Scroll para links internos com compensação do Header
+  // ==========================================================================
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
@@ -33,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const targetEl = document.querySelector(targetId);
       if (targetEl) {
         e.preventDefault();
-        const headerHeight = document.querySelector('.header')?.offsetHeight || 80;
+        const headerHeight = document.querySelector('.header')?.offsetHeight || 76;
         const targetPosition = targetEl.getBoundingClientRect().top + window.pageYOffset - headerHeight;
         window.scrollTo({
           top: targetPosition,
@@ -43,13 +107,45 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // 3. Header Shadow ao rolar a página
+  // ==========================================================================
+  // 4. Header Shadow & Active Section Spy
+  // ==========================================================================
   const header = document.querySelector('.header');
+  const desktopLinks = document.querySelectorAll('.header__link');
+  const sections = Array.from(desktopLinks)
+    .map(link => {
+      const id = link.getAttribute('href');
+      return id && id.startsWith('#') && id.length > 1 ? document.querySelector(id) : null;
+    })
+    .filter(Boolean);
+
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
+    // Sombra do Header
+    if (window.scrollY > 20) {
       header?.classList.add('header--scrolled');
     } else {
       header?.classList.remove('header--scrolled');
+    }
+
+    // Scrollspy simples e performático
+    const headerHeight = header?.offsetHeight || 76;
+    const scrollPos = window.scrollY + headerHeight + 50;
+
+    let currentSectionId = '';
+    sections.forEach(sec => {
+      if (sec.offsetTop <= scrollPos) {
+        currentSectionId = '#' + sec.id;
+      }
+    });
+
+    if (currentSectionId) {
+      desktopLinks.forEach(link => {
+        if (link.getAttribute('href') === currentSectionId) {
+          link.classList.add('is-active');
+        } else {
+          link.classList.remove('is-active');
+        }
+      });
     }
   }, { passive: true });
 });

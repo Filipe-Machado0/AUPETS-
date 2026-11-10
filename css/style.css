@@ -92,40 +92,58 @@ button {
 }
 
 /* ==========================================================================
-   Header / Navbar
+   Header / Navbar (Desktop & Mobile)
    ========================================================================== */
 .header {
   position: sticky;
   top: 0;
   z-index: 900;
-  background: rgba(253, 251, 247, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(253, 251, 247, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
-  transition: all 0.3s ease;
+  transition: box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.header--scrolled {
+  box-shadow: 0 4px 20px rgba(45, 25, 16, 0.08);
+  background: rgba(253, 251, 247, 0.98);
 }
 
 .header__nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  height: 76px;
+  gap: 16px;
 }
 
 .header__logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.header__logo-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FFF4EC;
+  border: 1.5px solid #FCD8C1;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(224, 106, 38, 0.12);
+  flex-shrink: 0;
 }
 
 .header__logo-img {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-full);
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  box-shadow: var(--shadow-sm);
-  background: var(--primary-soft);
-  padding: 2px;
+  border-radius: 50%;
 }
 
 .header__logo-text {
@@ -134,46 +152,97 @@ button {
 }
 
 .header__brand-title {
-  font-size: 1.35rem;
-  font-weight: 800;
+  font-size: 1.4rem;
+  font-weight: 900;
   color: var(--primary);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  line-height: 1;
+  letter-spacing: -0.03em;
 }
 
 .header__brand-subtitle {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.68rem;
+  font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
+  margin-top: 3px;
+}
+
+/* Desktop Links */
+.header__nav-menu {
+  display: flex;
+  align-items: center;
 }
 
 .header__links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 4px;
   list-style: none;
 }
 
 .header__link {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text-main);
-  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--secondary);
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  transition: all 0.2s ease;
 }
 
 .header__link:hover {
   color: var(--primary);
+  background: var(--primary-soft);
 }
 
+.header__link.is-active {
+  color: var(--primary-dark);
+}
+
+.nav-promo-pill {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+}
+
+/* Header Actions */
 .header__actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
-.btn-header-booking {
+.btn-nav-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(37, 211, 102, 0.1);
+  color: #128C7E;
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  padding: 9px 15px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.88rem;
+  transition: all 0.2s ease;
+}
+
+.btn-nav-wa:hover {
+  background: var(--whatsapp);
+  color: #FFFFFF;
+  border-color: var(--whatsapp);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+}
+
+.btn-nav-booking {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -181,54 +250,265 @@ button {
   color: #FFFFFF;
   padding: 10px 20px;
   border-radius: var(--radius-full);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.92rem;
   box-shadow: var(--shadow-primary);
   transition: all 0.2s ease;
 }
 
-.btn-header-booking:hover {
+.btn-nav-booking:hover {
   background: var(--primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(224, 106, 38, 0.35);
+  box-shadow: 0 10px 24px rgba(224, 106, 38, 0.35);
 }
 
-.btn-header-whatsapp {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--whatsapp);
+/* Mobile Quick Book Button */
+.btn-mobile-quick-book {
+  display: none;
+  background: var(--primary);
   color: #FFFFFF;
-  padding: 10px 18px;
+  padding: 8px 14px;
   border-radius: var(--radius-full);
-  font-weight: 700;
-  font-size: 0.92rem;
+  font-weight: 800;
+  font-size: 0.82rem;
+  box-shadow: var(--shadow-primary);
+}
+
+/* Mobile Hamburger Toggle */
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobile-toggle .bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--secondary);
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.mobile-toggle.is-active .bar-1 {
+  transform: translateY(7px) rotate(45deg);
+}
+.mobile-toggle.is-active .bar-2 {
+  opacity: 0;
+}
+.mobile-toggle.is-active .bar-3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   Mobile Drawer Menu (Slide-in)
+   ========================================================================== */
+.mobile-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  pointer-events: none;
+  visibility: hidden;
+  transition: visibility 0.3s ease;
+}
+
+.mobile-drawer.is-open {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.mobile-drawer__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(32, 23, 18, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-drawer.is-open .mobile-drawer__backdrop {
+  opacity: 1;
+}
+
+.mobile-drawer__panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 86%;
+  max-width: 360px;
+  background: #FFFFFF;
+  box-shadow: -8px 0 30px rgba(45, 25, 16, 0.2);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-drawer.is-open .mobile-drawer__panel {
+  transform: translateX(0);
+}
+
+.mobile-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  background: #FDFBF7;
+}
+
+.mobile-drawer__close {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  background: #FFFFFF;
+  border: 1px solid var(--border);
   transition: all 0.2s;
 }
 
-.btn-header-whatsapp:hover {
-  background: var(--whatsapp-hover);
-  transform: translateY(-2px);
+.mobile-drawer__close svg {
+  width: 20px;
+  height: 20px;
 }
 
-/* Mobile Menu Toggle */
-.mobile-menu-toggle {
-  display: none;
+.mobile-drawer__body {
+  padding: 24px 20px;
+  display: flex;
   flex-direction: column;
-  gap: 5px;
-  width: 32px;
-  height: 32px;
-  justify-content: center;
-  cursor: pointer;
+  flex-grow: 1;
 }
 
-.mobile-menu-toggle span {
-  display: block;
-  height: 3px;
+.mobile-drawer__links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.mobile-drawer__link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--secondary);
+  background: #FDFBF7;
+  border: 1px solid var(--border-light);
+  transition: all 0.2s;
+}
+
+.mobile-drawer__link svg {
+  width: 20px;
+  height: 20px;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.mobile-drawer__link:hover,
+.mobile-drawer__link:active {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  border-color: var(--primary-tint);
+}
+
+.mobile-drawer__link--promo {
+  border-color: var(--primary-tint);
+  background: #FFF7F0;
+}
+
+.mobile-promo-badge {
+  margin-left: auto;
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: var(--primary);
+  color: #FFFFFF;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+.mobile-drawer__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px dashed var(--border);
+}
+
+.btn-drawer-booking {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   width: 100%;
-  background: var(--secondary);
-  border-radius: 3px;
-  transition: all 0.3s;
+  background: var(--primary);
+  color: #FFFFFF;
+  padding: 14px 20px;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 0.98rem;
+  box-shadow: var(--shadow-primary);
+}
+
+.btn-drawer-booking svg {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-drawer-whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: rgba(37, 211, 102, 0.12);
+  color: #128C7E;
+  border: 1.5px solid rgba(37, 211, 102, 0.4);
+  padding: 13px 20px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.btn-drawer-whatsapp svg {
+  width: 18px;
+  height: 18px;
+}
+
+.mobile-drawer__footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.mobile-drawer__footer strong {
+  color: var(--secondary);
+}
+
+.drawer-hours {
+  margin-top: 4px;
 }
 
 /* ==========================================================================
@@ -394,12 +674,14 @@ button {
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   aspect-ratio: 4 / 4.8;
+  background: #FFF4EC;
 }
 
 .hero__card-image-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 25%;
   transition: transform 0.4s ease;
 }
 
@@ -1214,19 +1496,68 @@ button {
 /* ==========================================================================
    Responsive Breakpoints
    ========================================================================== */
+@media (max-width: 1080px) {
+  .header__nav-menu {
+    display: none;
+  }
+  
+  .header__actions .btn-nav-wa {
+    display: none;
+  }
+  
+  .header__actions .btn-nav-booking {
+    display: none;
+  }
+  
+  .btn-mobile-quick-book {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .mobile-toggle {
+    display: flex;
+  }
+}
+
 @media (max-width: 992px) {
   .hero__grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
   
+  .hero__content {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  
+  .hero__highlights {
+    justify-content: center;
+  }
+  
+  .hero__actions {
+    justify-content: center;
+  }
+  
+  .hero__trust-proof {
+    justify-content: center;
+  }
+  
+  .hero__card {
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
   .hero__title {
-    font-size: 2.4rem;
+    font-size: 2.35rem;
   }
   
   .packages-grid {
     grid-template-columns: 1fr;
-    max-width: 520px;
+    max-width: 480px;
+    margin: 0 auto;
   }
   
   .services-grid {
@@ -1247,24 +1578,46 @@ button {
 }
 
 @media (max-width: 768px) {
-  .header__links {
-    display: none;
-  }
-  
-  .header__actions .btn-header-whatsapp {
-    display: none;
+  .header__nav {
+    height: 68px;
   }
   
   .hero {
-    padding: 40px 0 50px;
+    padding: 32px 0 46px;
   }
   
   .hero__title {
     font-size: 2rem;
+    line-height: 1.15;
+  }
+  
+  .hero__subtitle {
+    font-size: 0.98rem;
+  }
+  
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .hero__actions .btn-primary,
+  .hero__actions .btn-secondary-outline {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+  }
+  
+  .hero__trust-proof {
+    flex-direction: column;
+    gap: 8px;
   }
   
   .section-title {
     font-size: 1.85rem;
+  }
+  
+  .section-subtitle {
+    font-size: 0.92rem;
   }
   
   .services-grid {
@@ -1277,15 +1630,40 @@ button {
   
   .footer__grid {
     grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  .footer__bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .promo-ribbon {
+    padding: 32px 20px;
   }
   
   .promo-ribbon__content {
     flex-direction: column;
     text-align: center;
+    gap: 20px;
   }
   
   .promo-ribbon__left {
     flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-promo-action,
+  .btn-promo-cta {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .hours-list__item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
   
   .floating-whatsapp span {
@@ -1293,10 +1671,86 @@ button {
   }
   
   .floating-whatsapp {
-    width: 56px;
-    height: 56px;
+    width: 54px;
+    height: 54px;
     padding: 0;
     justify-content: center;
     border-radius: 50%;
+    bottom: 18px;
+    right: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+  
+  .header__brand-title {
+    font-size: 1.25rem;
+  }
+  
+  .header__brand-subtitle {
+    font-size: 0.62rem;
+  }
+  
+  .header__logo-badge {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .btn-mobile-quick-book {
+    padding: 7px 11px;
+    font-size: 0.78rem;
+  }
+  
+  .mobile-toggle {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .hero__title {
+    font-size: 1.75rem;
+  }
+  
+  .hero__highlights {
+    gap: 6px;
+  }
+  
+  .hero__highlight-pill {
+    padding: 5px 10px;
+    font-size: 0.74rem;
+  }
+  
+  .hero__card {
+    padding: 12px;
+  }
+  
+  .hero__card-image-wrap {
+    aspect-ratio: 4 / 4.8;
+  }
+  
+  .hero__floating-badge {
+    position: static;
+    margin-top: 12px;
+    box-shadow: none;
+    border-radius: var(--radius-sm);
+  }
+  
+  .package-card {
+    padding: 24px 18px;
+  }
+  
+  .package-card__price-val {
+    font-size: 2.2rem;
+  }
+  
+  .service-card {
+    padding: 20px 18px;
+  }
+  
+  .hours-card,
+  .location-card {
+    padding: 22px 16px;
   }
 }
