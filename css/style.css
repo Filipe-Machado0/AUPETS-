@@ -315,7 +315,7 @@ button {
 .mobile-drawer {
   position: fixed;
   inset: 0;
-  z-index: 1100;
+  z-index: 2500;
   pointer-events: none;
   visibility: hidden;
   transition: visibility 0.3s ease;
@@ -329,9 +329,9 @@ button {
 .mobile-drawer__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(32, 23, 18, 0.6);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(32, 23, 18, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -347,14 +347,17 @@ button {
   bottom: 0;
   width: 86%;
   max-width: 360px;
+  height: 100%;
+  height: 100dvh;
   background: #FFFFFF;
-  box-shadow: -8px 0 30px rgba(45, 25, 16, 0.2);
+  box-shadow: -10px 0 35px rgba(45, 25, 16, 0.25);
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  z-index: 2;
 }
 
 .mobile-drawer.is-open .mobile-drawer__panel {
@@ -368,19 +371,27 @@ button {
   padding: 18px 20px;
   border-bottom: 1px solid var(--border);
   background: #FDFBF7;
+  flex-shrink: 0;
 }
 
 .mobile-drawer__close {
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-muted);
+  color: var(--secondary);
   background: #FFFFFF;
   border: 1px solid var(--border);
-  transition: all 0.2s;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobile-drawer__close:hover {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  border-color: var(--primary-tint);
 }
 
 .mobile-drawer__close svg {
