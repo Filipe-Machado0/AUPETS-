@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Aupets Banho &amp; Tosa • Lucas do Rio Verde - MT</title>
+  <meta name="description" content="Aupets Banho &amp; Tosa em Lucas do Rio Verde - MT. Mais que estética, é saúde e bem-estar de verdade para cães e gatos. Agende online sem espera!">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Aupets Banho &amp; Tosa • Lucas do Rio Verde - MT">
+  <meta property="og:description" content="Pacotes mensais completos e tosas com 50% de desconto este mês. Agende online pelo site!">
+  <meta property="og:image" content="assets/images/logo.png">
+  <meta property="og:type" content="website">
+
+  <!-- Mobile & PWA -->
+  <meta name="theme-color" content="#E06A26">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/booking-modal.css">
+
+  <!-- Supabase CDN (para sincronização em nuvem quando conectado) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- ==================== HEADER / NAV ==================== -->
+  <header class="header">
+    <div class="container header__nav">
+      <a href="#" class="header__logo">
+        <img src="assets/images/logo.png" alt="Aupets Logo" class="header__logo-img">
+        <div class="header__logo-text">
+          <span class="header__brand-title">aupets</span>
+          <span class="header__brand-subtitle">Banho &amp; Tosa &bull; LRV</span>
+        </div>
+      </a>
+
+      <ul class="header__links">
+        <li><a href="#inicio" class="header__link">Início</a></li>
+        <li><a href="#promocao" class="header__link">Promoção 50%</a></li>
+        <li><a href="#pacotes" class="header__link">Pacotes Mensais</a></li>
+        <li><a href="#servicos" class="header__link">Serviços Avulsos</a></li>
+        <li><a href="#horarios" class="header__link">Horários</a></li>
+        <li><a href="#duvidas" class="header__link">Dúvidas</a></li>
+      </ul>
+
+      <div class="header__actions">
+        <a href="https://wa.me/556599102445?text=Ol%C3%A1%20Aupets!%20Vim%20pelo%20site%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida" target="_blank" rel="noopener noreferrer" class="btn-header-whatsapp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span>(65) 9910-2445</span>
+        </a>
+
+        <button type="button" class="btn-header-booking" data-open-booking>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <span>Agendar Online</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero" id="inicio">
+    <div class="container hero__grid">
+      <div class="hero__content">
+        <div class="hero__badge">
+          <span class="hero__badge-pulse"></span>
+          <span>Lucas do Rio Verde - MT &bull; Atendimento com Amor</span>
+        </div>
+
+        <h1 class="hero__title">
+          Mais que estética, é <span>saúde e bem-estar</span> de verdade!
+        </h1>
+
+        <p class="hero__desc">
+          Banhos revigorantes, hidratações profundas e tosas especializadas para cães e gatos. Escolha o pacote ideal para o seu melhor amigo e garanta atendimento sem filas nem estresse.
+        </p>
+
+        <div class="hero__actions">
+          <button type="button" class="btn-hero-primary" data-open-booking>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span>Agendar Horário Online</span>
+          </button>
+
+          <a href="https://wa.me/556599102445?text=Ol%C3%A1%20Aupets!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20pacotes%20de%20banho%20e%20tosa" target="_blank" rel="noopener noreferrer" class="btn-hero-whatsapp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <span>Falar no WhatsApp</span>
+          </a>
+        </div>
+
+        <div class="hero__proofs">
+          <div class="proof-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <span>Cuidado com Amor</span>
+          </div>
+          <div class="proof-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Equipe Especializada</span>
+          </div>
+          <div class="proof-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <span>Ambiente Seguro &amp; Climatizado</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card -->
+      <div class="hero__card">
+        <div class="hero__card-image-wrap">
+          <img src="assets/images/banner-pacotes.jpg" alt="Aupets Pacotes e Cuidados">
+        </div>
+        <div class="hero__floating-badge">
+          <div class="hero__floating-info">
+            <strong>Seu Pet Sempre Lindo &bull; Aupets</strong>
+            <span>Lucas do Rio Verde - MT &bull; Banhos e Tosas</span>
+          </div>
+          <span class="hero__floating-tag">50% OFF Tosa</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SUPER PROMOÇÃO BANNER ==================== -->
+  <section class="promo-ribbon" id="promocao">
+    <div class="container promo-ribbon__content">
+      <div class="promo-ribbon__left">
+        <span class="promo-badge-tag">50% OFF</span>
+        <div class="promo-ribbon__text">
+          <h3>Super Promoção do Mês na Aupets!</h3>
+          <p>50% de desconto em qualquer tosa (máquina ou tesoura). Garanta já o horário do seu pet!</p>
+        </div>
+      </div>
+
+      <button type="button" class="btn-promo-action" data-open-booking data-service="Tosa Completa (50% OFF no Mês)">
+        Aproveitar 50% de Desconto &rarr;
+      </button>
+    </div>
+  </section>
+
+  <!-- ==================== PACOTES MENSAIS (DESTAQUE) ==================== -->
+  <section class="section-padding section-padding--alt" id="pacotes">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Economia &amp; Rotina Saudável</span>
+        <h2 class="section-title">Escolha o Pacote Ideal para o Seu Amigo</h2>
+        <p class="section-desc">
+          Planos mensais completos com 4 banhos, hidratação profunda e cuidados profiláticos para seu pet estar sempre cheiroso e saudável.
+        </p>
+      </div>
+
+      <div class="packages-grid">
+        <!-- Pacote Simples -->
+        <div class="package-card">
+          <div class="package-card__header">
+            <h3 class="package-card__name">Pacote Simples</h3>
+            <p class="package-card__tagline">O essencial para manter seu amigo higienizado e confortável todo mês.</p>
+            <div class="package-card__price-box">
+              <span class="package-card__currency">R$</span>
+              <span class="package-card__amount">170</span>
+              <span class="package-card__period">,00 / mês</span>
+            </div>
+          </div>
+
+          <ul class="package-card__features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>4 Banhos</strong> revigorantes com shampoo especial</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>1 Tosa higiênica</strong> caprichada (patinhas e íntima)</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>1 Hidratação profunda</strong> na pelagem</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Corte de unhas</strong> com segurança e cuidado</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Limpeza de ouvidos</strong> profilática</span>
+            </li>
+          </ul>
+
+          <button type="button" class="btn-package-select" data-open-booking data-service="Pacote Simples (4 Banhos + Tosa Higiênica + Hidratação) - R$ 170">
+            <span>Contratar Pacote Simples</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+
+        <!-- Pacote Premium (Destaque) -->
+        <div class="package-card package-card--featured">
+          <div class="package-card__ribbon">O Mais Pedido &bull; Custo-Benefício</div>
+          <div class="package-card__header">
+            <h3 class="package-card__name">Pacote Premium</h3>
+            <p class="package-card__tagline">O spa completo com hidratação de patinhas e saúde bucal preventiva.</p>
+            <div class="package-card__price-box">
+              <span class="package-card__currency">R$</span>
+              <span class="package-card__amount">185</span>
+              <span class="package-card__period">,00 / mês</span>
+            </div>
+          </div>
+
+          <ul class="package-card__features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>4 Banhos</strong> revigorantes e relaxantes</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>1 Tosa higiênica</strong> completa</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>1 Hidratação profunda</strong> na pelagem</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Corte de unhas</strong> e lixamento</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Limpeza de ouvidos</strong> detalhada</span>
+            </li>
+            <li class="highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span><strong>Hidratação especial das patinhas</strong> (protege coxins)</span>
+            </li>
+            <li class="highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span><strong>Escovação bucal</strong> (cuidado essencial com a saúde oral)</span>
+            </li>
+          </ul>
+
+          <button type="button" class="btn-package-select" data-open-booking data-service="Pacote Premium (4 Banhos + Cuidados Especiais) - R$ 185">
+            <span>Contratar Pacote Premium</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVIÇOS AVULSOS ==================== -->
+  <section class="section-padding" id="servicos">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Cuidados Pontuais</span>
+        <h2 class="section-title">Serviços Avulsos de Banho &amp; Estética</h2>
+        <p class="section-desc">
+          Precisa de um banho de emergência ou de uma tosa especial? Atendemos com agendamento online com hora marcada.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Card 1 -->
+        <div class="service-card">
+          <div class="service-card__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19C7.29 7.43 4.5 9.4 4.5 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M17 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19-2-1.63-4.79.34-4.79 3.19 0 2.22 1.8 4.05 4 4.05z"/></svg>
+          </div>
+          <h3 class="service-card__title">Banho Revigorante</h3>
+          <p class="service-card__desc">Shampoo hipoalergênico, massagem relaxante, secagem controlada com carinho, corte de unhas e higienização dos ouvidos.</p>
+          <div class="service-card__footer">
+            <div class="service-card__price">
+              <span>A partir de</span>
+              R$ 55,00
+            </div>
+            <button type="button" class="btn-card-book" data-open-booking data-service="Banho Revigorante Avulso">Agendar</button>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="service-card">
+          <div class="service-card__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+          </div>
+          <h3 class="service-card__title">Banho + Tosa Higiênica</h3>
+          <p class="service-card__desc">Banho completo acompanhado da tosa sanitária, limpeza da sola das patinhas e contorno dos olhos para máximo conforto e limpeza.</p>
+          <div class="service-card__footer">
+            <div class="service-card__price">
+              <span>A partir de</span>
+              R$ 75,00
+            </div>
+            <button type="button" class="btn-card-book" data-open-booking data-service="Banho + Tosa Higiênica">Agendar</button>
+          </div>
+        </div>
+
+        <!-- Card 3: Promoção Tosa -->
+        <div class="service-card" style="border-color: #E06A26; background: #FFFDFB;">
+          <div class="service-card__icon" style="background: #E06A26; color: #FFFFFF;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3 class="service-card__title">Tosa Completa (50% OFF)</h3>
+          <p class="service-card__desc">Tosa na máquina ou tesoura no padrão da raça ou preferência do tutor. Promoção exclusiva deste mês com 50% de desconto!</p>
+          <div class="service-card__footer">
+            <div class="service-card__price">
+              <span>De <s style="color:#888">R$ 120</s> por</span>
+              <strong style="color:#E06A26;">R$ 60,00</strong>
+            </div>
+            <button type="button" class="btn-card-book" style="background:#E06A26;color:#FFF;" data-open-booking data-service="Tosa Completa (50% OFF no Mês)">50% OFF</button>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="service-card">
+          <div class="service-card__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          </div>
+          <h3 class="service-card__title">Hidratação de Pelagem</h3>
+          <p class="service-card__desc">Tratamento de nutrição profunda com máscara reparadora para deixar os pelos macios, desembaraçados e com brilho acetinado.</p>
+          <div class="service-card__footer">
+            <div class="service-card__price">
+              <span>Valor único</span>
+              R$ 35,00
+            </div>
+            <button type="button" class="btn-card-book" data-open-booking data-service="Hidratação de Pelagem">Agendar</button>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="service-card">
+          <div class="service-card__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3 class="service-card__title">Spa Patinhas &amp; Bucal</h3>
+          <p class="service-card__desc">Bálsamo hidratante para coxins ressecados e escovação bucal com pasta veterinária preventiva contra tártaro e mau hálito.</p>
+          <div class="service-card__footer">
+            <div class="service-card__price">
+              <span>Adicional de</span>
+              R$ 25,00
+            </div>
+            <button type="button" class="btn-card-book" data-open-booking data-service="Spa Patinhas & Bucal">Agendar</button>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="service-card">
+          <div class="service-card__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 7.65l.77.77L12 20.66l7.65-7.66.77-.77a5.4 5.4 0 0 0 0-7.65z"/></svg>
+          </div>
+          <h3 class="service-card__title">Banho Especial para Gatos</h3>
+          <p class="service-card__desc">Atendimento silencioso e sem ruídos bruscos, com técnica de baixo estresse pensada exclusivamente para a sensibilidade felina.</p>
+          <div class="service-card__footer">
+            <div class="service-card__price">
+              <span>Consulte</span>
+              Sob Medida
+            </div>
+            <button type="button" class="btn-card-book" data-open-booking data-service="Banho Especial para Gatos">Agendar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DIFERENCIAIS ==================== -->
+  <section class="section-padding section-padding--alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Por Que Escolher a Aupets?</span>
+        <h2 class="section-title">O Cuidado Que o Seu Filho Merece</h2>
+        <p class="section-desc">Entendemos que o seu pet é parte da sua família. Por isso, oferecemos carinho em cada detalhe.</p>
+      </div>
+
+      <div class="differentials-grid">
+        <div class="diff-card">
+          <div class="diff-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </div>
+          <h4>Cuidado com Amor</h4>
+          <p>Manejo humanizado, sem agressão ou estresse. Respeitamos o tempo e temperamento de cada animal.</p>
+        </div>
+
+        <div class="diff-card">
+          <div class="diff-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <h4>Equipe Especializada</h4>
+          <p>Profissionais qualificados em tosas de raças e estética animal, com produtos profissionais de alta linha.</p>
+        </div>
+
+        <div class="diff-card">
+          <div class="diff-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h4>Ambiente Seguro</h4>
+          <p>Espaço limpo, higienizado a cada atendimento e com toalhas esterilizadas e individuais para cada pet.</p>
+        </div>
+
+        <div class="diff-card">
+          <div class="diff-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <h4>Agendamento Sem Fila</h4>
+          <p>Você escolhe o dia e horário online e seu pet é atendido na hora combinada, sem esperar o dia todo em gaiolas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HORÁRIOS & LOCALIZAÇÃO ==================== -->
+  <section class="section-padding" id="horarios">
+    <div class="container">
+      <div class="hours-location-grid">
+        <!-- Horários -->
+        <div class="hours-card">
+          <span class="section-tag">Horários de Atendimento</span>
+          <h3 class="section-title" style="font-size: 1.8rem;">Quando Estamos Abertos</h3>
+          <p class="section-desc" style="font-size: 0.95rem;">
+            Atendimento em Lucas do Rio Verde - MT com pontualidade e dedicação.
+          </p>
+
+          <table class="hours-table">
+            <tbody>
+              <tr>
+                <td class="day">Segunda-feira</td>
+                <td class="time">07:30 - 11:30 | 13:30 - 18:00</td>
+              </tr>
+              <tr>
+                <td class="day">Terça-feira</td>
+                <td class="time">07:30 - 11:30 | 13:30 - 18:00</td>
+              </tr>
+              <tr>
+                <td class="day">Quarta-feira</td>
+                <td class="time">07:30 - 11:30 | 13:30 - 18:00</td>
+              </tr>
+              <tr>
+                <td class="day">Quinta-feira</td>
+                <td class="time">07:30 - 11:30 | 13:30 - 18:00</td>
+              </tr>
+              <tr>
+                <td class="day">Sexta-feira</td>
+                <td class="time">07:30 - 11:30</td>
+              </tr>
+              <tr>
+                <td class="day">Sábado</td>
+                <td class="time">07:30 - 11:30</td>
+              </tr>
+              <tr class="closed">
+                <td class="day">Domingo</td>
+                <td class="time">Fechado</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Localização & Contato -->
+        <div class="location-card">
+          <span class="section-tag">Fale Conosco</span>
+          <h3 class="section-title" style="font-size: 1.8rem;">Aupets em Lucas do Rio Verde</h3>
+          <p class="section-desc" style="font-size: 0.95rem;">
+            Dúvidas sobre os pacotes ou agendamentos? Chame nossa equipe no WhatsApp!
+          </p>
+
+          <div class="location-info-list">
+            <div class="location-info-item">
+              <div class="location-info-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="location-info-text">
+                <strong>Cidade &bull; Localização</strong>
+                <span>Lucas do Rio Verde - MT</span>
+              </div>
+            </div>
+
+            <div class="location-info-item">
+              <div class="location-info-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <div class="location-info-text">
+                <strong>WhatsApp Direto</strong>
+                <span>+55 65 9910-2445</span>
+              </div>
+            </div>
+
+            <div class="location-info-item">
+              <div class="location-info-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </div>
+              <div class="location-info-text">
+                <strong>Instagram Oficial</strong>
+                <a href="https://www.instagram.com/aupetslrv/" target="_blank" rel="noopener noreferrer" style="color: #E06A26; font-weight: 700;">@aupetslrv</a>
+              </div>
+            </div>
+          </div>
+
+          <a href="https://wa.me/556599102445?text=Ol%C3%A1%20Aupets!%20Vim%20pelo%20site%20e%20gostaria%20de%20conversar%20com%20a%20equipe" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-confirm" style="font-size: 0.95rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <span>Iniciar Conversa no WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ==================== -->
+  <section class="section-padding section-padding--alt" id="duvidas">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Tire Suas Dúvidas</span>
+        <h2 class="section-title">Perguntas Frequentes</h2>
+        <p class="section-desc">Tudo o que você precisa saber sobre o funcionamento da Aupets.</p>
+      </div>
+
+      <div class="faq-wrap">
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Como funcionam os Pacotes Mensais de Banho?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            Nos pacotes mensais (Simples por R$ 170 ou Premium por R$ 185), seu pet tem direito a 4 banhos no mês (um por semana), tosa higiênica, hidratação profunda de pelagem, corte de unhas e limpeza de ouvidos. No Premium, ele ainda ganha o spa com hidratação especial das patinhas e escovação bucal!
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Como funciona o desconto de 50% em qualquer tosa?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            Este mês estamos com uma super promoção: qualquer tosa completa (na máquina ou tesoura) sai com 50% de desconto sobre o valor de tabela! Você pode agendar direto pelo botão "Agendar Online" selecionando a opção promocional.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Vocês atendem gatos também?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            Sim! Atendemos felinos com todo o cuidado, técnicas de baixo estresse, ambiente calmo e toalhas exclusivas para garantir a tranquilidade do seu gatinho.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question">
+            <span>Como faço para agendar pelo site?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            É super simples: clique em qualquer botão "Agendar Horário Online", escolha o serviço ou pacote, selecione o dia e o horário de sua preferência e preencha os dados do seu pet. Ao finalizar, basta enviar a confirmação pronta pelo WhatsApp com 1 clique!
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <div class="header__logo" style="margin-bottom: 12px;">
+          <img src="assets/images/logo.png" alt="Aupets" class="header__logo-img" style="background:#FFF;">
+          <span class="header__brand-title" style="color:#FFF;">aupets</span>
+        </div>
+        <p>Mais que estética, é saúde e bem-estar de verdade para o seu melhor amigo. Atendimento profissional em Lucas do Rio Verde - MT.</p>
+      </div>
+
+      <div>
+        <h4 class="footer__title">Links Rápidos</h4>
+        <ul class="footer__links-list">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#promocao">Promoção 50%</a></li>
+          <li><a href="#pacotes">Pacotes Mensais</a></li>
+          <li><a href="#servicos">Serviços Avulsos</a></li>
+          <li><a href="#horarios">Horários de Atendimento</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer__title">Redes &amp; Contato</h4>
+        <ul class="footer__links-list">
+          <li><a href="https://wa.me/556599102445" target="_blank" rel="noopener noreferrer">WhatsApp: (65) 9910-2445</a></li>
+          <li><a href="https://www.instagram.com/aupetslrv/" target="_blank" rel="noopener noreferrer">Instagram: @aupetslrv</a></li>
+          <li><span>Lucas do Rio Verde - MT</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer__title">Área Administrativa</h4>
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.88rem; margin-bottom: 14px;">Acesso restrito para a equipe da Aupets gerenciar horários e agendamentos.</p>
+        <a href="admin.html" style="display:inline-block; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); padding:8px 16px; border-radius:var(--radius-sm); font-size:0.85rem; font-weight:700;">
+          Acessar Painel Admin &rarr;
+        </a>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>&copy; 2026 Aupets Banho &amp; Tosa &bull; Todos os direitos reservados.</p>
+      <p>Desenvolvido para o bem-estar animal em Lucas do Rio Verde - MT.</p>
+    </div>
+  </footer>
+
+  <!-- ==================== FLOATING WHATSAPP BUTTON ==================== -->
+  <a href="https://wa.me/556599102445?text=Ol%C3%A1%20Aupets!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio" target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Falar no WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    <span>Falar no WhatsApp</span>
+  </a>
+
+  <!-- JavaScript -->
+  <script src="js/booking-store.js"></script>
+  <script src="js/booking-modal.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
