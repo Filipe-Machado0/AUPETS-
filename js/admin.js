@@ -572,107 +572,90 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ========================================================================
-  // CONTROLE DE AUTENTICAÇÃO / LOGIN DO PAINEL
+  // MODO DEMONSTRATIVO: POVOAMENTO INICIAL DE EXEMPLO (SEM SENHA)
   // ========================================================================
-  const AUTH_KEY = 'aupets_admin_auth_v1';
-  const VALID_USER = 'adminaupets';
-  const VALID_PASS = 'aupets2026';
-
-  const loginScreen = document.getElementById('adminLoginScreen');
-  const loginForm = document.getElementById('adminLoginForm');
-  const loginUserInput = document.getElementById('loginUsername');
-  const loginPassInput = document.getElementById('loginPassword');
-  const loginRememberMe = document.getElementById('loginRememberMe');
-  const loginErrorMessage = document.getElementById('loginErrorMessage');
-  const btnTogglePassword = document.getElementById('btnTogglePassword');
-  const btnLogoutAdmin = document.getElementById('btnLogoutAdmin');
-
-  function isAuthenticated() {
-    return localStorage.getItem(AUTH_KEY) === 'true' || sessionStorage.getItem(AUTH_KEY) === 'true';
-  }
-
-  function setAuthenticated(remember) {
-    if (remember) {
-      localStorage.setItem(AUTH_KEY, 'true');
-    } else {
-      sessionStorage.setItem(AUTH_KEY, 'true');
-    }
-    if (loginScreen) {
-      loginScreen.classList.add('is-hidden');
-      loginScreen.style.display = 'none';
-    }
-    renderAll();
-  }
-
-  function logout() {
-    localStorage.removeItem(AUTH_KEY);
-    sessionStorage.removeItem(AUTH_KEY);
-    if (loginScreen) {
-      loginScreen.classList.remove('is-hidden');
-      loginScreen.style.display = 'flex';
-    }
-    if (loginPassInput) loginPassInput.value = '';
-    if (loginErrorMessage) loginErrorMessage.style.display = 'none';
-    if (loginUserInput) loginUserInput.focus();
-  }
-
-  // Verifica estado inicial de login
-  if (!isAuthenticated()) {
-    if (loginScreen) {
-      loginScreen.classList.remove('is-hidden');
-      loginScreen.style.display = 'flex';
-    }
-  } else {
-    if (loginScreen) {
-      loginScreen.classList.add('is-hidden');
-      loginScreen.style.display = 'none';
-    }
-  }
-
-  // Toggle mostrar/ocultar senha
-  if (btnTogglePassword && loginPassInput) {
-    btnTogglePassword.addEventListener('click', () => {
-      const isPass = loginPassInput.type === 'password';
-      loginPassInput.type = isPass ? 'text' : 'password';
-      btnTogglePassword.style.color = isPass ? 'var(--royal-main)' : '#94a3b8';
-    });
-  }
-
-  // Submissão do login (com suporte a maiúsculas/minúsculas no usuário)
-  if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const user = (loginUserInput.value || '').trim().toLowerCase();
-      const pass = (loginPassInput.value || '').trim();
-
-      if (user === VALID_USER.toLowerCase() && pass === VALID_PASS) {
-        if (loginErrorMessage) loginErrorMessage.style.display = 'none';
-        const remember = loginRememberMe ? loginRememberMe.checked : true;
-        setAuthenticated(remember);
-      } else {
-        if (loginErrorMessage) {
-          loginErrorMessage.style.display = 'flex';
-          loginErrorMessage.classList.remove('admin-login-error');
-          void loginErrorMessage.offsetWidth;
-          loginErrorMessage.classList.add('admin-login-error');
+  function seedDemoAppointmentsIfEmpty() {
+    const all = BookingStore.getAll();
+    if (!all || all.length === 0) {
+      const demoList = [
+        {
+          id: 'aup-demo-1',
+          clientName: 'Camila Fernandes',
+          clientPhone: '(65) 99654-1234',
+          petName: 'Thor',
+          petBreed: 'Pastor Australiano',
+          petSize: 'Médio Porte',
+          service: 'Pacote Premium (4 Banhos + Tosa + Hidratação)',
+          date: todayISO,
+          time: '08:00',
+          status: 'confirmado',
+          notes: 'Cuidado especial com as patinhas, usar gravatinha Aupets.',
+          createdAt: new Date().toISOString()
+        },
+        {
+          id: 'aup-demo-2',
+          clientName: 'Lucas Rezende',
+          clientPhone: '(65) 99876-5432',
+          petName: 'Mel',
+          petBreed: 'Shih Tzu',
+          petSize: 'Pequeno Porte',
+          service: 'Tosa Completa (50% OFF no Mês)',
+          date: todayISO,
+          time: '09:30',
+          status: 'confirmado',
+          notes: 'Tosa bebê no corpinho e carinha bem arredondada.',
+          createdAt: new Date().toISOString()
+        },
+        {
+          id: 'aup-demo-3',
+          clientName: 'Patrícia Souza',
+          clientPhone: '(65) 99221-7890',
+          petName: 'Bob',
+          petBreed: 'Golden Retriever',
+          petSize: 'Grande Porte',
+          service: 'Banho Revigorante + Hidratação Profunda',
+          date: todayISO,
+          time: '10:30',
+          status: 'concluido',
+          notes: 'Secagem completa e escovação dos pelos.',
+          createdAt: new Date().toISOString()
+        },
+        {
+          id: 'aup-demo-4',
+          clientName: 'Rafael Guimarães',
+          clientPhone: '(65) 99345-6789',
+          petName: 'Pipoca',
+          petBreed: 'Poodle Toy',
+          petSize: 'Pequeno Porte',
+          service: 'Pacote Simples (4 Banhos + Higiênica)',
+          date: todayISO,
+          time: '14:00',
+          status: 'confirmado',
+          notes: 'Pet dócil, tutor busca às 15:30.',
+          createdAt: new Date().toISOString()
+        },
+        {
+          id: 'aup-demo-5',
+          clientName: 'Juliana Castro',
+          clientPhone: '(65) 99112-3344',
+          petName: 'Luna',
+          petBreed: 'Spitz Alemão',
+          petSize: 'Pequeno Porte',
+          service: 'Hidratação Especial + Escovação Bucal',
+          date: tomorrowISO,
+          time: '08:30',
+          status: 'confirmado',
+          notes: 'Primeiro atendimento na Aupets.',
+          createdAt: new Date().toISOString()
         }
-        if (loginPassInput) {
-          loginPassInput.value = '';
-          loginPassInput.focus();
-        }
-      }
-    });
+      ];
+      demoList.forEach(item => {
+        BookingStore.add(item);
+      });
+    }
   }
 
-  // Botão Sair
-  if (btnLogoutAdmin) {
-    btnLogoutAdmin.addEventListener('click', () => {
-      if (confirm('Deseja realmente sair do Painel de Atendimentos?')) {
-        logout();
-      }
-    });
-  }
-
-  // Inicializa renderização
+  // Inicializa modo demonstrativo livre de senha e renderiza o painel
+  seedDemoAppointmentsIfEmpty();
   renderAll();
 });
